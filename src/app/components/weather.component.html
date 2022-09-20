@@ -1,0 +1,82 @@
+<div class="container" *ngIf="weatherData">
+  <div class="upper-data">
+      <img src="../assets/hot.jpg" class="background" *ngIf="weatherData.days[0].temp > 15">
+      <img src="../assets/cold.jpg" class="background" *ngIf="weatherData.days[0].temp <= 15">
+      <div class="weather-data" *ngIf="weatherData">
+        <img
+          src="../assets/remove-bookmark.png"
+          class="bookmark-icon"
+          *ngIf="isBookmarked"
+          (click)="removeBookmark(weatherData.address)">
+        <img
+          src="../assets/add-bookmark.png"
+          class="bookmark-icon"
+          *ngIf="!isBookmarked"
+          (click)="addBookmark(weatherData.address)">
+        <div class="location">{{ weatherData.resolvedAddress }}</div>
+        <div class="temperature">{{ weatherData.days[0].temp | number: '1.0-0'}}°C</div>
+        <div class="description">{{ weatherData.days[0].description }}</div>
+      </div>
+  </div>
+
+  <div class="lower-data">
+      <div class="more-info-label">
+      More Information
+      </div>
+      <div class="more-info-container">
+        <div class="info-block">
+          <div class="info-block-label">
+          <span>Humidity</span>
+          </div>
+          <div class="info-block-value">
+          {{weatherData.days[0].humidity}}%
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-block-label">
+          <span>Wind</span>
+          </div>
+          <div class="info-block-value">
+          {{weatherData.days[0].windspeed}} km/h
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-block-label">
+          <span>Min</span>
+          </div>
+          <div class="info-block-value">
+          {{weatherData.days[0].tempmin | number: '1.0-0'}}°C
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-block-label">
+          <span>Max</span>
+          </div>
+          <div class="info-block-value">
+          {{weatherData.days[0].tempmax | number: '1.0-0'}}°C
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-block-label">
+          <span>Pressure</span>
+          </div>
+          <div class="info-block-value">
+          {{weatherData.days[0].pressure}}%
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-block-label">
+          <span>Visibility</span>
+          </div>
+          <div class="info-block-value">
+          {{weatherData.days[0].visibility}} km/h
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
